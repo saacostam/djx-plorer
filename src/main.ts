@@ -1,6 +1,8 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh } from 'three';
-import { createCanvas } from "./visual/canvas";
+import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
+
 import { getOrCreateAppWrapper } from './visual/app';
+import { createCanvas } from "./visual/canvas";
+import { getNodeMesh } from './visual/threejs';
 
 const appWrapper = getOrCreateAppWrapper();
 const canvas = createCanvas();
@@ -13,16 +15,14 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setAnimationLoop( animate );
 appWrapper.appendChild( renderer.domElement );
 
-const geometry = new BoxGeometry( 1, 1, 1 );
-const material = new MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new Mesh( geometry, material );
-scene.add( cube );
+const node = getNodeMesh();
+scene.add( node );
 
 camera.position.z = 5;
 
 function animate() {
-	cube.rotation.x += 0.01;
-	cube.rotation.y += 0.01;
+	node.rotation.x += 0.01;
+	node.rotation.y += 0.01;
 
 	renderer.render( scene, camera );
 }
