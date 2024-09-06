@@ -57,11 +57,12 @@ function generateSongName(): string {
             songName += VERBS[Math.floor(Math.random() * NOUNS.length)];
         }else {
             throw new Error("Invalid template section: " + section);
-
         }
+
+        songName += " ";
     }
 
-    return songName;
+    return songName.trim();
 }
 
 function generateArtistName(): string {
