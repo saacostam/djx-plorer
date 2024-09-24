@@ -1,7 +1,8 @@
 export interface Volumeme {
+    namifier: string;
     x: number;
     y: number;
     z: number;
-    radius: number;
     color: string;
+    readonly radius: number;
 }
