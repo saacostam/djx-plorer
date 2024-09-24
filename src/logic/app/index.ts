@@ -1,8 +1,9 @@
-import { Reconciler } from "../../visual/volumeme";
+import { Cameraka, Reconciler } from "../../visual/volumeme";
 import { Stage } from "../stage";
 
 export interface AppOptions {
     reconciler: Reconciler;
+    cameraka: Cameraka;
 }
 
 export class App {
@@ -12,13 +13,17 @@ export class App {
 
     public stages = new Map<string, Stage>();
     public currentStage: Stage;
+    public cameraka: Cameraka;
 
     private reconciler: Reconciler;
 
     constructor({
         reconciler,
+        cameraka,
     }: AppOptions) {
         this.reconciler = reconciler;
+        this.cameraka = cameraka;
+
         this.currentStage = new Stage();
         this.stages.set(App.DEFAULT.STAGE_KEY, this.currentStage);
     }
@@ -41,6 +46,6 @@ export class App {
     }
 
     draw() {
-        this.reconciler.draw(this.currentStage);
+        this.reconciler.draw(this.currentStage, this.cameraka);
     }
 }
